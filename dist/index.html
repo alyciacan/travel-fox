@@ -1,16 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>TravelFox</title>
   <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro&display=swap" rel="stylesheet">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <header id="header">
+    <h3 id="header__welcome-message">Hello, <span id="header__welcome-message name">Charlie</span>!</h3>
+    <img src="./images/travelfox_white_notext.svg" alt="turing logo"/>
+  </header>
+  <div class="main-section">
+    <nav id="nav-bar">
+      <p id="nav-bar__new-trip">new trip request</p>
+      <p id="nav-bar__my-trips">view my trips</p>
+      <p id="nav-bar__my-favorites">view my favorites</p>
+    </nav>
+    <section class="main-section__content">
+      <img src="./images/Oregon.png" alt="Oregon coastline with haystack rocks and Pacific Ocean"/>
+      <section class="main-section__content form-container" id="main-section__content form-container">
+        <form id="new-trip-form">
+          <label for="start-date">Departure date:<input type="date" id="start-date"/></label>
+          <label for="end-date">Return date:<input type="date" id="end-date"/></label>
+          <label for="num-travelers">Number of travelers:<input type="number" id="num-travelers"/></label>
+          <label for="destination">Destination:
+            <select name="destination">
+              <option value="Tokyo, Japan">Tokyo, Japan</option>
+              <option value="Paris, France">Paris, France</option>
+            </select>
+          </label>
+        </form>
+      </section>
+      <h1>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="svg-triangle" width='100' height='100'>
+          <polygon points="100,0 50,100 0,0"/>
+        </svg>My trips
+      </h1>
+      <section class="main-section__content card-container">
+        <article class="box box1">
+          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
+          <p id="status-box">upcoming</p>
+          <p id="location">Paris, France</p>
+          <p id="date">12/15/22</p>
+        </article>
+        <article class="box box2">
+          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
+          <p id="status-box">upcoming</p>
+          <p id="location">Paris, France</p>
+          <p id="date">12/15/22</p>
+        </article>
+        <article class="box box3">
+          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
+          <p id="status-box">upcoming</p>
+          <p id="location">Paris, France</p>
+          <p id="date">12/15/22</p>
+        </article>
+        <article class="box box4">4</article>
+        <article class="box box5">5</article>
+        <article class="box box6">6</article>
+        <article class="box box7">7</article>
+        <article class="box box8">8</article>
+        <article class="box box9">9</article>
+      </section>
+
+
+    </section>
+</div>
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
 </body>
 </html>
+<!-- <img src="./images/travelfox_black.svg" alt="turing logo">
+<img src="./images/travelfox_blue.png" alt="turing logo">
+<img src="./images/travelfox_white.svg" alt="turing logo"> -->

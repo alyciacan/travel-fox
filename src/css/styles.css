@@ -1,3 +1,29 @@
-body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+* {
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+#header {
+  background-color: black;
+}
+.card-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, 20rem);
+
+}
+
+#card-img {
+  object-fit: cover;
+  border: 2px solid cyan;
+  display: block;
+  max-height: 50%;
+  object-position: center center;
+}
+
+.box {
+  border: 3px solid red;
+  max-height: 100px;
+  overflow: hidden;
 }
