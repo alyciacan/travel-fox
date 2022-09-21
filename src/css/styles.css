@@ -51,6 +51,7 @@
   width: 100%;
   text-align: center;
   padding: 30px;
+  font-size: 140%;
 }
 
 .nav-bar_p:hover {
@@ -79,8 +80,8 @@
 .card-container {
   display: grid;
   margin: 0px 18px 0px 18px;
-  grid-template-columns: repeat(auto-fit, 18rem);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 16rem);
+  gap: 2rem;
 }
 
 #card-img {
@@ -126,6 +127,7 @@
 label {
   display: block;
   margin: 10px;
+  font-size: 125%;
 }
 
 input,
@@ -147,11 +149,14 @@ select {
 .card-content {
   padding: 10px;
   line-height: 150%;
-  font-size: 0.9em;
+  font-size: 115%;
 }
 
 h1, h3 {
   padding: 20px;
+}
+
+h3 {
   text-align: center;
 }
 
