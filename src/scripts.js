@@ -8,4 +8,26 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+
+let allDestinations;
+let allTrips;
+let allTravelers;
+let currentUser;
+
+
+function logIn(userID) {
+  getData(userID);
+  //needs to take what user puts in for username and get it into the promise.all below
+};
+
+
+
+function getData(userID) {
+  Promise.all([fetchData('destinations'), fetchData('trips'), fetchData('travelers'), fetchData(`travelers/${userID}`)])
+    .then(datasetArray => {
+      allDestinations = datasetArray[0];
+      allTrips = datasetArray[1];
+      allTravelers = datasetArray[2];
+      currentUser =
+    })
+}
