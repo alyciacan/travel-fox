@@ -1,7 +1,14 @@
-function fetchData(url, dataKey) { //need to be able to get travelers, single traveler, trips, destinations
-  return fetch(`http://localhost:3001/api/v1/${url}`)
+const fetchData = (dataType) => {
+  return fetch(`http://localhost:3001/api/v1/${dataType}`)
     .then(response => response.json())
-    .then(data => data[dataKey])
+    //.then(data => console.log(data[dataType]))
+    .then(data => data[dataType])
 };
 
-export { fetchData }
+const  fetchUserData = (userID) => {
+  return fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
+    .then(response => response.json())
+    .then(data => data)
+};
+
+export { fetchData, fetchUserData }
