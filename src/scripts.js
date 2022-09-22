@@ -9,13 +9,14 @@ import Traveler from './Traveler.js';
 import './images/turing-logo.png'
 
 //QUERY SELECTORS:
-const welcomeName = document.getElementById('header__welcome-message-name')
+const welcomeName = document.getElementById('header__welcome-message-name');
+const userExpenses = document.getElementById('total-expenses');
+const reviewExpensesBtn = document.getElementById('nav-bar__my-expenses');
+const userExpensesContainer = document.getElementById('total-expenses-container');
 
 
 //GLOBAL VARIABLES:
-const currentYear = dayjs().format('YYYY');
-
-
+let currentYear = dayjs().format('YYYY');
 let allDestinations;
 let allTrips;
 // let allTravelers;
@@ -27,9 +28,12 @@ let currentUser;
   //needs to take what user puts in for username and get it into the promise.all below
 //};
 
+//EVENT LISTENERS:
 window.addEventListener('load', function() {
   getData(14);
 });
+
+reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 
 // fetchData('trips'), fetchData('travelers'), fetchData(`travelers/${userID}`)
 function getData(userID) {
@@ -44,11 +48,43 @@ function getData(userID) {
 
 function generatePageLoad(user) {
   renderUserGreeting();
+  renderUserExpenditures();
   //see my trips as cards
   // have my travel expenses populate
-  //be greeted at top of page
 };
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
-}
+};
+
+function renderUserExpenditures() {
+  userExpenses.innerText = `$${currentUser.returnYearExpenditures(allTrips, allDestinations, currentYear)}`
+};
+
+function showOrHideExpenses() {
+  if(userExpensesContainer.classList.contains("hidden")) {
+    unhide(userExpensesContainer);
+    makeActive(reviewExpensesBtn);
+    reviewExpensesBtn.innerText = "hide my travel expenses";
+  } else {
+    hide(userExpensesContainer);
+    makeInactive(reviewExpensesBtn);
+    reviewExpensesBtn.innerText = "review my travel expenses"
+  }
+};
+
+function makeActive(element) {
+  element.classList.add('active');
+};
+
+function makeInactive(element) {
+  element.classList.remove('active');
+};
+
+function unhide(element) {
+  element.classList.remove('hidden');
+};
+
+function hide(element) {
+  element.classList.add('hidden');
+};

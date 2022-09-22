@@ -19,7 +19,7 @@ class Traveler {
     });
     return eachTripCosts.reduce((total, curr) => {
       return total += curr
-    }, 0)
+    }, 0).toLocaleString('en-US');
   };
 
   greetUser() {

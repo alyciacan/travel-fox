@@ -61,7 +61,7 @@
   color: #F564A9;
 }
 
-.nav-bar p:active {
+.active {
   background-color: #6B818C;
   color: white;
 }
