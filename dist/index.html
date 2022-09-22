@@ -11,7 +11,7 @@
 </head>
 <body>
   <header id="header" class="header">
-    <h3 id="header__welcome-message">Hello, <span id="header__welcome-message-name">Charlie</span>!</h3>
+    <h3 id="header__welcome-message">Hello, <span id="header__welcome-message-name"></span>!</h3>
     <div class="header__logo-container">
       <img src="./images/travelfox.png" alt="Stylized TravelFox lettering" class="logo"/>
       <img src="./images/travelfox_white_notext.svg" alt="Stylized white fox logo" class="logo"/>
@@ -20,7 +20,7 @@
   <div class="main-section">
     <nav id="nav-bar" class="nav-bar">
       <p id="nav-bar__new-trip" class="nav-bar_p">new trip request</p>
-      <p id="nav-bar__my-trips" class="nav-bar_p">view my trips</p>
+      <p id="nav-bar__my-trips" class="nav-bar_p active">view my trips</p>
       <p id="nav-bar__my-favorites" class="nav-bar_p">view my favorites</p>
       <p id="nav-bar__my-expenses" class="nav-bar_p">review my travel expenses</p>
       <section class="total-expenses-container hidden" id="total-expenses-container">
@@ -33,7 +33,7 @@
       <div class="image-container">
         <img class="main-section__content-img" src="./images/Oregon.png" alt="Oregon coastline with haystack rocks and Pacific Ocean"/>
       </div>
-      <section class="main-section__content form-container hidden" id="main-section__content form-container">
+      <section class="main-section__content form-container hidden" id="form-container">
         <form id="new-trip-form">
           <h3>going somewhere?</h3>
           <label for="start-date">Departure date: <input type="date" id="start-date"/></label>
@@ -53,58 +53,8 @@
           <polygon points="1 0, 11 0, 6 8"/>
         </svg> My trips
       </h1>
-      <section class="main-section__content card-container">
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
-        <article class="box box1 shadow">
-          <img id="card-img" src="./images/Paris.png" alt="Paris skyline"/>
-          <p class="status-box float">upcoming</p>
-          <div class="card-content" id="card-content">
-            <p id="location">Paris, France</p>
-            <p id="date">12/15/22</p>
-          </div>
-        </article>
+      <section class="main-section__content card-container" id="card-container">
       </section>
-
-
     </section>
 </div>
 

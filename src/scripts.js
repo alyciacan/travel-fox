@@ -13,7 +13,11 @@ const welcomeName = document.getElementById('header__welcome-message-name');
 const userExpenses = document.getElementById('total-expenses');
 const reviewExpensesBtn = document.getElementById('nav-bar__my-expenses');
 const userExpensesContainer = document.getElementById('total-expenses-container');
-
+const myTripsSection = document.getElementById('card-container');
+const newTripBtn = document.getElementById('nav-bar__new-trip');
+const newTripForm = document.getElementById('form-container');
+const viewTripsBtn = document.getElementById('nav-bar__my-trips');
+const buttonArray = [newTripBtn, reviewExpensesBtn, viewTripsBtn];
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -34,6 +38,10 @@ window.addEventListener('load', function() {
 });
 
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
+newTripBtn.addEventListener('click', showOrHideRequestForm);
+buttonArray.forEach(button => {
+  button.addEventListener('click', deactivateAllButtons);
+})
 
 // fetchData('trips'), fetchData('travelers'), fetchData(`travelers/${userID}`)
 function getData(userID) {
@@ -49,8 +57,7 @@ function getData(userID) {
 function generatePageLoad(user) {
   renderUserGreeting();
   renderUserExpenditures();
-  //see my trips as cards
-  // have my travel expenses populate
+  renderUserCards();
 };
 
 function renderUserGreeting() {
@@ -61,15 +68,54 @@ function renderUserExpenditures() {
   userExpenses.innerText = `$${currentUser.returnYearExpenditures(allTrips, allDestinations, currentYear)}`
 };
 
+function renderUserCards() {
+  const userTrips = currentUser.filterTravelersTrips(allTrips);
+  userTrips.forEach(tripObj => {
+    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+    myTripsSection.appendChild(createACard(destinationObj, tripObj))
+  })
+}
+
+function createACard(destinationObj, tripObj) {
+  const newElement = document.createElement('article');
+  const formattedDate = dayjs(tripObj.date).format('MM/DD/YYYY')
+  const endDate = dayjs(tripObj.date).add(tripObj.duration, 'day').format('MM/DD/YYYY');
+  newElement.classList.add('box');
+  newElement.innerHTML = `<img class="card-img" src=${destinationObj.image} alt=${destinationObj.alt}/>
+            <p class="status-box float">${tripObj.status}</p>
+            <div class="card-content" id="card-content">
+              <p id="location">${destinationObj.destination}</p>
+              <p id="date">${formattedDate} - ${endDate}</p>
+            </div>`;
+return newElement;
+}
+
+function showOrHideRequestForm() {
+  if(newTripForm.classList.contains('hidden')) {
+    unhide(newTripForm);
+    makeActive(newTripBtn);
+  } else {
+    hide(newTripForm);
+    makeInactive(newTripBtn);
+  }
+}
+
+function hideExpenses() {
+  if(!userExpensesContainer.classList.contains("hidden")) {
+    hide(userExpensesContainer);
+    makeInactive(reviewExpensesBtn);
+    reviewExpensesBtn.innerText = "review my travel expenses"
+  }
+}
+
+
 function showOrHideExpenses() {
   if(userExpensesContainer.classList.contains("hidden")) {
     unhide(userExpensesContainer);
     makeActive(reviewExpensesBtn);
     reviewExpensesBtn.innerText = "hide my travel expenses";
   } else {
-    hide(userExpensesContainer);
-    makeInactive(reviewExpensesBtn);
-    reviewExpensesBtn.innerText = "review my travel expenses"
+    hideExpenses();
   }
 };
 
