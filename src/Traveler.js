@@ -21,6 +21,11 @@ class Traveler {
       return total += curr
     }, 0)
   };
+
+  greetUser() {
+    return this.name.split(" ")[0]
+  };
+
 };
 
 module.exports = Traveler;
