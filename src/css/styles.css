@@ -21,6 +21,10 @@
 
 .logo {
   height: 115px;
+}
+
+.header__logo-container {
+  background-color: inherit;
   margin-right: 20px;
 }
 
@@ -30,9 +34,8 @@
   grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
     "navbar main main main main main"
-
-  /* width: 82vw; */
 }
+
 .main-section__content {
   grid-area: main;
   position: relative;
@@ -44,8 +47,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
 }
+
 .nav-bar_p {
   cursor: pointer;
   width: 100%;
@@ -102,8 +105,24 @@
   position: relative;
 }
 
-.card-content > p {
+.card-content > p,
+h4,
+.total-expenses {
   text-align: center;
+}
+
+.total-expenses {
+  font-size: 150%;
+  margin: 20px 0px 20px 0px;
+  font-weight: bold;
+}
+
+.total-expenses-container {
+  padding: 15px;
+  border: 3px solid #06BCC1;
+  border-radius: 25px;
+  margin-top: 25px;
+  box-shadow: 0px 3px 8px #06BCC1;
 }
 
 .shadow:hover {
@@ -167,4 +186,8 @@ h3 {
   color: white;
   cursor: pointer;
   border: 3px solid gray;
+}
+
+.hidden {
+  display: none;
 }
