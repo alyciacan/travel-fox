@@ -18,6 +18,8 @@ const newTripBtn = document.getElementById('nav-bar__new-trip');
 const newTripForm = document.getElementById('form-container');
 const viewTripsBtn = document.getElementById('nav-bar__my-trips');
 const buttonArray = [newTripBtn, reviewExpensesBtn, viewTripsBtn];
+const submitBtn = document.getElementById('submit-btn');
+const destinationChooser = document.getElementById('destinations');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -58,7 +60,26 @@ function generatePageLoad(user) {
   renderUserGreeting();
   renderUserExpenditures();
   renderUserCards();
+  fillDestinationOptions();
 };
+
+function fillDestinationOptions() {
+  allDestinations
+  .sort((a, b) => {
+      if(a.destination < b.destination) {
+        return -1;
+      };
+      if(a.destination > b.destination) {
+        return 1;
+      }
+    })
+  .forEach(destinationObj => {
+    const newOption = document.createElement('option');
+    newOption.value = destinationObj.destination;
+    newOption.innerText = destinationObj.destination;
+    destinationChooser.appendChild(newOption);
+  });
+}
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
@@ -88,7 +109,7 @@ function createACard(destinationObj, tripObj) {
               <p id="date">${formattedDate} - ${endDate}</p>
             </div>`;
 return newElement;
-}
+};
 
 function showOrHideRequestForm() {
   if(newTripForm.classList.contains('hidden')) {
@@ -98,7 +119,7 @@ function showOrHideRequestForm() {
     hide(newTripForm);
     makeInactive(newTripBtn);
   }
-}
+};
 
 function hideExpenses() {
   if(!userExpensesContainer.classList.contains("hidden")) {
@@ -106,7 +127,7 @@ function hideExpenses() {
     makeInactive(reviewExpensesBtn);
     reviewExpensesBtn.innerText = "review my travel expenses"
   }
-}
+};
 
 
 function showOrHideExpenses() {
