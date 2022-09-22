@@ -9,9 +9,18 @@ class Traveler {
     return tripsArray.filter(tripObj => tripObj.userID === this.id)
   }
 
-  returnYearExpenditures(tripObj, destinationObj, date) {
-
-  }
+  returnYearExpenditures(tripsArray, destinationsArray, year) {
+    let eachTripCosts = [];
+    this.filterTravelersTrips(tripsArray).forEach(thisUsersTrip => {
+      let destinationObj = destinationsArray.find(destination => destination.id === thisUsersTrip.destinationID)
+      if(thisUsersTrip.date.includes(year)) {
+        eachTripCosts.push((thisUsersTrip.duration * destinationObj.estimatedLodgingCostPerDay)  + (destinationObj.estimatedFlightCostPerPerson * thisUsersTrip.travelers)) //cost of EACH trip
+      }
+    });
+    return eachTripCosts.reduce((total, curr) => {
+      return total += curr
+    }, 0)
+  };
 };
 
 module.exports = Traveler;
