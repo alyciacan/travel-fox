@@ -16,4 +16,4 @@ const fetchPost = (newTripObj) => {
   .then(response => console.log(response))
 };
 
-export { fetchData, fetchUserData }
+export { fetchData, fetchUserData, fetchPost }

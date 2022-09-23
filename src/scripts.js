@@ -2,7 +2,7 @@
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
 const dayjs = require('dayjs')
-import { fetchData, fetchUserData } from './apiCalls.js';
+import { fetchData, fetchUserData, fetchPost } from './apiCalls.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
 
@@ -81,12 +81,13 @@ function fillDestinationOptions() {
 };
 
 function submitForm() {
+  const date = dayjs(startDate.value).format('YYYY/MM/DD');
   const destination = allDestinations
     .find(destinationObj => destinationObj.destination === destinationChooser.value);
-  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, date:`${startDate.value}`, duration:`${duration.value}` });
+  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, startDate: date, duration:`${duration.value}` });
   const tripRequest = {
     method: 'POST',
-    headers: { 'Content-Type: 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(trip)
   };
   fetchPost(tripRequest)
