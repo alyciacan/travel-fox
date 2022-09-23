@@ -4,7 +4,7 @@ const fetchData = (dataType) => {
     .then(data => data[dataType])
 };
 
-const  fetchUserData = (userID) => {
+const fetchUserData = (userID) => {
   return fetch(`http://localhost:3001/api/v1/travelers/${userID}`)
     .then(response => response.json())
     .then(data => data)

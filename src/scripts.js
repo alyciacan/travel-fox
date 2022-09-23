@@ -4,6 +4,7 @@ import './css/styles.css';
 const dayjs = require('dayjs')
 import { fetchData, fetchUserData } from './apiCalls.js';
 import Traveler from './Traveler.js';
+import Trip from './Trip.js';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -20,6 +21,9 @@ const viewTripsBtn = document.getElementById('nav-bar__my-trips');
 const buttonArray = [newTripBtn, reviewExpensesBtn, viewTripsBtn];
 const submitBtn = document.getElementById('submit-btn');
 const destinationChooser = document.getElementById('destinations');
+const numTravelers = document.getElementById('num-travelers');
+const startDate = document.getElementById('start-date');
+const duration = document.getElementById('duration');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -40,8 +44,8 @@ window.addEventListener('load', function() {
 });
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
+submitBtn.addEventListener('click', submitForm);
 
-// fetchData('trips'), fetchData('travelers'), fetchData(`travelers/${userID}`)
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
     .then(datasetArray => {
@@ -64,10 +68,9 @@ function fillDestinationOptions() {
   .sort((a, b) => {
       if(a.destination < b.destination) {
         return -1;
-      };
-      if(a.destination > b.destination) {
+      } else {
         return 1;
-      }
+      };
     })
   .forEach(destinationObj => {
     const newOption = document.createElement('option');
@@ -75,6 +78,19 @@ function fillDestinationOptions() {
     newOption.innerText = destinationObj.destination;
     destinationChooser.appendChild(newOption);
   });
+};
+
+function submitForm() {
+  const destination = allDestinations
+    .find(destinationObj => destinationObj.destination === destinationChooser.value);
+  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, date:`${startDate.value}`, duration:`${duration.value}` });
+  const tripRequest = {
+    method: 'POST',
+    headers: { 'Content-Type: 'application/json' },
+    body: JSON.stringify(trip)
+  };
+  fetchPost(tripRequest)
+    .then(response => response);
 };
 
 function renderUserGreeting() {
@@ -107,6 +123,8 @@ function createACard(destinationObj, tripObj) {
 return newElement;
 };
 
+
+//DISPLAY/HIDE FNs:
 function showOrHideRequestForm() {
   if(newTripForm.classList.contains('hidden')) {
     unhide(newTripForm);
@@ -119,15 +137,6 @@ function showOrHideRequestForm() {
   }
 };
 
-function hideExpenses() {
-  if(!userExpensesContainer.classList.contains("hidden")) {
-    hide(userExpensesContainer);
-    makeInactive(reviewExpensesBtn);
-    reviewExpensesBtn.innerText = "review my travel expenses"
-  }
-};
-
-
 function showOrHideExpenses() {
   if(userExpensesContainer.classList.contains("hidden")) {
     unhide(userExpensesContainer);
@@ -135,6 +144,14 @@ function showOrHideExpenses() {
     reviewExpensesBtn.innerText = "hide my travel expenses";
   } else {
     hideExpenses();
+  }
+};
+
+function hideExpenses() {
+  if(!userExpensesContainer.classList.contains("hidden")) {
+    hide(userExpensesContainer);
+    makeInactive(reviewExpensesBtn);
+    reviewExpensesBtn.innerText = "review my travel expenses"
   }
 };
 
