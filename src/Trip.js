@@ -9,11 +9,16 @@ class Trip {
     this.status = 'pending',
     this.suggestedActivities = [];
   };
+
   calculateCost(destinationObj) {
     const costWithoutFee = (this.travelers * destinationObj.estimatedFlightCostPerPerson)
      + (this.duration * destinationObj.estimatedLodgingCostPerDay);
     const fee = costWithoutFee * .1;
     return `$${(costWithoutFee + fee).toLocaleString()}`;
+  };
+  
+  approveTrip() {
+    this.status = 'approved';
   };
 };
 

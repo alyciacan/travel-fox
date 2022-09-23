@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import Traveler from '../src/Traveler.js';
 const dayjs = require('dayjs');
 
-
 describe ('Traveler', () => {
   let ellynn;
   let tripsArray;
