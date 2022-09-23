@@ -1,15 +1,17 @@
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+// IMPORTS:
 import './css/styles.css';
-const dayjs = require('dayjs')
 import { fetchData, fetchUserData, fetchPost } from './apiCalls.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
+const dayjs = require('dayjs')
 var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 dayjs.extend(isSameOrBefore);
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+//IMAGES:
+import './images/Oregon.png';
+import './images/travelfox.png';
+import './images/travelfox_white_notext.svg';
 
 //QUERY SELECTORS:
 const welcomeName = document.getElementById('header__welcome-message-name');
@@ -33,7 +35,6 @@ const form = document.getElementById('new-trip-form');
 let currentYear = dayjs().format('YYYY');
 let allDestinations;
 let allTrips;
-// let allTravelers;
 let currentUser;
 
 
@@ -115,29 +116,21 @@ function checkForm() {
     };
 };
 
-// function checkDate(input) {
-//   return dayjs(input).isSameOrBefore(dayjs(), 'day';
-// };
-//
-// function checkValue(input) {
-//
-// }
-
-
 function respondSuccess() {
   unhide(responseMessage);
   responseMessage.innerText = "Your request was submitted!";
   setTimeout(function() {
     hide(responseMessage);
   }, 2000);
-}
+};
 
 function respondError(error) {
   unhide(responseMessage);
   responseMessage.innerText = error;
   setTimeout(function() {
     hide(responseMessage);
-  }, 2000);}
+  }, 2000);
+};
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
@@ -154,7 +147,7 @@ function renderUserCards() {
     const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
     myTripsSection.appendChild(createACard(destinationObj, tripObj))
   })
-}
+};
 
 function createACard(destinationObj, tripObj) {
   const newElement = document.createElement('article');
