@@ -7,6 +7,7 @@ describe ('Trip', () => {
   let tripsArray;
   let destinationsArray;
   let tripRequest;
+  let tripRequest2;
   let ellynnsTripRequests;
 
   beforeEach(() => {
@@ -56,15 +57,17 @@ describe ('Trip', () => {
       alt: "man riding on kayak surrounded by mountains"
       }
      ];
-     tripRequest = new Trip(ellynn, destinationsArray[0], ellynnsTripRequests[0])
+     tripRequest = new Trip(ellynn, destinationsArray[0], ellynnsTripRequests[0]);
+     tripRequest2 = new Trip(ellynn, destinationsArray[2], ellynnsTripRequests[1]);
   });
 
   it('should be a function', () => {
     expect(Trip).to.be.a('function');
   });
 
-  it('should be able to calculate the approximate cost of the trip', () => {
+  it('should be able to calculate the approximate cost of different trips', () => {
     expect(tripRequest.calculateCost(destinationsArray[0])).to.equal('$3,135');
+    expect(tripRequest2.calculateCost(destinationsArray[2])).to.equal('$4,455');
   });
 
   it('should have a status of "pending" by default', () => {
