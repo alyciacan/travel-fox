@@ -38,12 +38,8 @@ let currentUser;
 window.addEventListener('load', function() {
   getData(14);
 });
-
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
-buttonArray.forEach(button => {
-  button.addEventListener('click', deactivateAllButtons);
-})
 
 // fetchData('trips'), fetchData('travelers'), fetchData(`travelers/${userID}`)
 function getData(userID) {
@@ -79,7 +75,7 @@ function fillDestinationOptions() {
     newOption.innerText = destinationObj.destination;
     destinationChooser.appendChild(newOption);
   });
-}
+};
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
@@ -115,9 +111,11 @@ function showOrHideRequestForm() {
   if(newTripForm.classList.contains('hidden')) {
     unhide(newTripForm);
     makeActive(newTripBtn);
+    newTripBtn.innerText = 'nevermind';
   } else {
     hide(newTripForm);
     makeInactive(newTripBtn);
+    newTripBtn.innerText = 'new trip request';
   }
 };
 
