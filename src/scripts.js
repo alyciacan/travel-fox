@@ -5,6 +5,8 @@ const dayjs = require('dayjs')
 import { fetchData, fetchUserData, fetchPost } from './apiCalls.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
+var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
+dayjs.extend(isSameOrBefore);
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -24,6 +26,8 @@ const destinationChooser = document.getElementById('destinations');
 const numTravelers = document.getElementById('num-travelers');
 const startDate = document.getElementById('start-date');
 const duration = document.getElementById('duration');
+const responseMessage = document.getElementById('responseMessage');
+const form = document.getElementById('new-trip-form');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -37,14 +41,13 @@ let currentUser;
 //  getData("14");
   //needs to take what user puts in for username and get it into the promise.all below
 //};
-
 //EVENT LISTENERS:
 window.addEventListener('load', function() {
   getData(14);
 });
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
-submitBtn.addEventListener('click', submitForm);
+submitBtn.addEventListener('click', checkForm);
 
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
@@ -91,8 +94,50 @@ function submitForm() {
     body: JSON.stringify(trip)
   };
   fetchPost(tripRequest)
-    .then(response => response);
+    .then(respondSuccess())
+    .then(getData(currentUser.id))
+    .catch(error => respondError(error));
+  form.reset();
 };
+
+function checkForm() {
+  if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
+    && numTravelers.value
+    && destinationChooser.value
+    && startDate.value) {
+      submitForm();
+    } else if (dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')) {
+      responseMessage.innerText = "Please select a date in the future!";
+      unhide(responseMessage);
+    } else {
+      responseMessage.innerText = "Please complete all fields!";
+      unhide(responseMessage);
+    };
+};
+
+// function checkDate(input) {
+//   return dayjs(input).isSameOrBefore(dayjs(), 'day';
+// };
+//
+// function checkValue(input) {
+//
+// }
+
+
+function respondSuccess() {
+  unhide(responseMessage);
+  responseMessage.innerText = "Your request was submitted!";
+  setTimeout(function() {
+    hide(responseMessage);
+  }, 2000);
+}
+
+function respondError(error) {
+  unhide(responseMessage);
+  responseMessage.innerText = error;
+  setTimeout(function() {
+    hide(responseMessage);
+  }, 2000);}
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
@@ -103,6 +148,7 @@ function renderUserExpenditures() {
 };
 
 function renderUserCards() {
+  myTripsSection.innerHTML = "";
   const userTrips = currentUser.filterTravelersTrips(allTrips);
   userTrips.forEach(tripObj => {
     const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
