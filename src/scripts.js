@@ -153,14 +153,23 @@ function createACard(destinationObj, tripObj) {
   const newElement = document.createElement('article');
   const formattedDate = dayjs(tripObj.date).format('MM/DD/YYYY')
   const endDate = dayjs(tripObj.date).add(tripObj.duration, 'day').format('MM/DD/YYYY');
+  const status = calculateStatus(tripObj);
   newElement.classList.add('box');
   newElement.innerHTML = `<img class="card-img" src=${destinationObj.image} alt=${destinationObj.alt}/>
-            <p class="status-box float">${tripObj.status}</p>
+            <p class="status-box float">${status}</p>
             <div class="card-content" id="card-content">
               <p id="location">${destinationObj.destination}</p>
               <p id="date">${formattedDate} - ${endDate}</p>
             </div>`;
 return newElement;
+};
+
+function calculateStatus(tripObj) {
+  if (!dayjs().isSameOrBefore(tripObj.date, 'day')) {
+    return 'past';
+  } else {
+    return tripObj.status;
+  };
 };
 
 
