@@ -1,15 +1,17 @@
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+// IMPORTS:
 import './css/styles.css';
-const dayjs = require('dayjs')
 import { fetchData, fetchUserData, fetchPost } from './apiCalls.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
+const dayjs = require('dayjs')
 var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 dayjs.extend(isSameOrBefore);
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+//IMAGES:
+import './images/Oregon.png';
+import './images/travelfox.png';
+import './images/travelfox_white_notext.svg';
 
 //QUERY SELECTORS:
 const welcomeName = document.getElementById('header__welcome-message-name');
@@ -28,19 +30,14 @@ const startDate = document.getElementById('start-date');
 const duration = document.getElementById('duration');
 const responseMessage = document.getElementById('responseMessage');
 const form = document.getElementById('new-trip-form');
+const heading = document.getElementById('my-trips');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
 let allDestinations;
 let allTrips;
-// let allTravelers;
 let currentUser;
 
-
-//function logIn(userID) {
-//  getData("14");
-  //needs to take what user puts in for username and get it into the promise.all below
-//};
 //EVENT LISTENERS:
 window.addEventListener('load', function() {
   getData(14);
@@ -48,6 +45,7 @@ window.addEventListener('load', function() {
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
 submitBtn.addEventListener('click', checkForm);
+viewTripsBtn.addEventListener('click', changeViewTripsBtn);
 
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
@@ -115,29 +113,21 @@ function checkForm() {
     };
 };
 
-// function checkDate(input) {
-//   return dayjs(input).isSameOrBefore(dayjs(), 'day';
-// };
-//
-// function checkValue(input) {
-//
-// }
-
-
 function respondSuccess() {
   unhide(responseMessage);
   responseMessage.innerText = "Your request was submitted!";
   setTimeout(function() {
     hide(responseMessage);
   }, 2000);
-}
+};
 
 function respondError(error) {
   unhide(responseMessage);
   responseMessage.innerText = error;
   setTimeout(function() {
     hide(responseMessage);
-  }, 2000);}
+  }, 2000);
+};
 
 function renderUserGreeting() {
   welcomeName.innerText = currentUser.greetUser();
@@ -154,22 +144,67 @@ function renderUserCards() {
     const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
     myTripsSection.appendChild(createACard(destinationObj, tripObj))
   })
-}
+};
+
+function renderFilteredTrips(filter) {
+  myTripsSection.innerHTML = "";
+  const userTrips = currentUser.filterTravelersTrips(allTrips);
+  if(filter === 'past') {
+    userTrips.forEach(tripObj => {
+      if(calculateStatus(tripObj) === 'past') {
+      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      };
+    });
+  } else {
+    userTrips.forEach(tripObj => {
+      if(calculateStatus(tripObj) !== 'past') {
+      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      };
+    });
+  };
+};
 
 function createACard(destinationObj, tripObj) {
   const newElement = document.createElement('article');
   const formattedDate = dayjs(tripObj.date).format('MM/DD/YYYY')
   const endDate = dayjs(tripObj.date).add(tripObj.duration, 'day').format('MM/DD/YYYY');
+  const status = calculateStatus(tripObj);
   newElement.classList.add('box');
   newElement.innerHTML = `<img class="card-img" src=${destinationObj.image} alt=${destinationObj.alt}/>
-            <p class="status-box float">${tripObj.status}</p>
-            <div class="card-content" id="card-content">
-              <p id="location">${destinationObj.destination}</p>
-              <p id="date">${formattedDate} - ${endDate}</p>
-            </div>`;
-return newElement;
+                          <p class="status-box float">${status}</p>
+                          <div class="card-content" id="card-content">
+                          <p id="location">${destinationObj.destination}</p>
+                          <p id="date">${formattedDate} - ${endDate}</p>
+                          </div>`;
+  return newElement;
 };
 
+function calculateStatus(tripObj) {
+  if (!dayjs().isSameOrBefore(tripObj.date, 'day')) {
+    return 'past';
+  } else {
+    return tripObj.status;
+  };
+};
+
+function changeViewTripsBtn() {
+  makeActive(viewTripsBtn);
+  if(viewTripsBtn.innerText === 'view all trips') {
+    heading.innerText = 'All my trips'
+    viewTripsBtn.innerText = 'view upcoming trips';
+    renderUserCards();
+  } else if (viewTripsBtn.innerText === 'view upcoming trips') {
+    heading.innerText = 'My upcoming trips'
+    viewTripsBtn.innerText = 'view past trips';
+    renderFilteredTrips();
+  } else if (viewTripsBtn.innerText === 'view past trips') {
+    heading.innerText = 'My past trips'
+    viewTripsBtn.innerText = 'view all trips'
+    renderPastTripsOnly();
+  };
+};
 
 //DISPLAY/HIDE FNs:
 function showOrHideRequestForm() {

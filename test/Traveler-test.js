@@ -95,7 +95,7 @@ describe ('Traveler', () => {
   });
 
   it('should be able to return the amount the traveler has spent on trips this year', () => {
-    expect(ellynn.returnYearExpenditures(tripsArray, destinationsArray, '2022')).to.equal('10,620');
+    expect(ellynn.returnYearExpenditures(tripsArray, destinationsArray, '2022')).to.equal('11,682');
   });
 
   it('should be able to generate the user\'s first name', () => {
