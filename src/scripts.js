@@ -38,11 +38,6 @@ let allDestinations;
 let allTrips;
 let currentUser;
 
-
-//function logIn(userID) {
-//  getData("14");
-  //needs to take what user puts in for username and get it into the promise.all below
-//};
 //EVENT LISTENERS:
 window.addEventListener('load', function() {
   getData(14);
@@ -151,26 +146,24 @@ function renderUserCards() {
   })
 };
 
-function renderPastTripsOnly() {
+function renderFilteredTrips(filter) {
   myTripsSection.innerHTML = "";
   const userTrips = currentUser.filterTravelersTrips(allTrips);
-  userTrips.forEach(tripObj => {
-    if(calculateStatus(tripObj) === 'past') {
-    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-    myTripsSection.appendChild(createACard(destinationObj, tripObj))
-    };
-  });
-};
-
-function renderFutureTripsOnly() {
-  myTripsSection.innerHTML = "";
-  const userTrips = currentUser.filterTravelersTrips(allTrips);
-  userTrips.forEach(tripObj => {
-    if(calculateStatus(tripObj) !== 'past') {
-    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-    myTripsSection.appendChild(createACard(destinationObj, tripObj))
-    };
-  });
+  if(filter === 'past') {
+    userTrips.forEach(tripObj => {
+      if(calculateStatus(tripObj) === 'past') {
+      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      };
+    });
+  } else {
+    userTrips.forEach(tripObj => {
+      if(calculateStatus(tripObj) !== 'past') {
+      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      };
+    });
+  };
 };
 
 function createACard(destinationObj, tripObj) {
@@ -196,6 +189,22 @@ function calculateStatus(tripObj) {
   };
 };
 
+function changeViewTripsBtn() {
+  makeActive(viewTripsBtn);
+  if(viewTripsBtn.innerText === 'view all trips') {
+    heading.innerText = 'All my trips'
+    viewTripsBtn.innerText = 'view upcoming trips';
+    renderUserCards();
+  } else if (viewTripsBtn.innerText === 'view upcoming trips') {
+    heading.innerText = 'My upcoming trips'
+    viewTripsBtn.innerText = 'view past trips';
+    renderFilteredTrips();
+  } else if (viewTripsBtn.innerText === 'view past trips') {
+    heading.innerText = 'My past trips'
+    viewTripsBtn.innerText = 'view all trips'
+    renderPastTripsOnly();
+  };
+};
 
 //DISPLAY/HIDE FNs:
 function showOrHideRequestForm() {
@@ -242,21 +251,4 @@ function unhide(element) {
 
 function hide(element) {
   element.classList.add('hidden');
-};
-
-function changeViewTripsBtn() {
-  makeActive(viewTripsBtn);
-  if(viewTripsBtn.innerText === 'view all trips') {
-    heading.innerText = 'All my trips'
-    viewTripsBtn.innerText = 'view upcoming trips';
-    renderUserCards();
-  } else if (viewTripsBtn.innerText === 'view upcoming trips') {
-    heading.innerText = 'My upcoming trips'
-    viewTripsBtn.innerText = 'view past trips';
-    renderFutureTripsOnly();
-  } else if (viewTripsBtn.innerText === 'view past trips') {
-    heading.innerText = 'My past trips'
-    viewTripsBtn.innerText = 'view all trips'
-    renderPastTripsOnly();
-  };
 };
