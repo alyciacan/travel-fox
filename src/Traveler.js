@@ -7,14 +7,15 @@ class Traveler {
 
   filterTravelersTrips(tripsArray) {
     return tripsArray.filter(tripObj => tripObj.userID === this.id)
-  }
+  };
 
   returnYearExpenditures(tripsArray, destinationsArray, year) {
     let eachTripCosts = [];
     this.filterTravelersTrips(tripsArray).forEach(thisUsersTrip => {
       let destinationObj = destinationsArray.find(destination => destination.id === thisUsersTrip.destinationID)
-      if(thisUsersTrip.date.includes(year)) {
-        const baseCost = (thisUsersTrip.duration * destinationObj.estimatedLodgingCostPerDay)  + (destinationObj.estimatedFlightCostPerPerson * thisUsersTrip.travelers)
+      if(thisUsersTrip.date.includes(year) && thisUsersTrip.status !== 'pending') {
+        const baseCost = (thisUsersTrip.duration * destinationObj.estimatedLodgingCostPerDay)
+          + (destinationObj.estimatedFlightCostPerPerson * thisUsersTrip.travelers);
         eachTripCosts.push(baseCost + (baseCost * .1));
       }
     });

@@ -53,7 +53,7 @@
   cursor: pointer;
   width: 100%;
   text-align: center;
-  padding: 30px;
+  padding: 50px 30px 50px 30px;
   font-size: 140%;
 }
 
@@ -70,7 +70,7 @@
   width: 100%;
   object-fit: cover;
   overflow: hidden;
-  max-height: 300px;
+  max-height: 275px;
 }
 
 .main-section__content-img {
@@ -197,6 +197,10 @@ h3 {
   color: white;
   cursor: pointer;
   border: 3px solid gray;
+}
+
+#nav-bar__my-trips {
+  height: 155px;
 }
 
 .hidden {
