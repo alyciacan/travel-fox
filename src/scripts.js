@@ -43,9 +43,21 @@ window.addEventListener('load', function() {
   getData(14);
 });
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
+reviewExpensesBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { showOrHideExpenses() }
+  });
 newTripBtn.addEventListener('click', showOrHideRequestForm);
+newTripBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { showOrHideRequestForm() }
+  });
 submitBtn.addEventListener('click', checkForm);
+submitBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { checkForm() }
+  });
 viewTripsBtn.addEventListener('click', changeViewTripsBtn);
+viewTripsBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { changeViewTripsBtn() }
+  });
 
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
