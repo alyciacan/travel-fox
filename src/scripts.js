@@ -85,14 +85,14 @@ function submitForm() {
   const date = dayjs(startDate.value).format('YYYY/MM/DD');
   const destination = allDestinations
     .find(destinationObj => destinationObj.destination === destinationChooser.value);
-  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, startDate: date, duration:`${duration.value}` });
+  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, date: date, duration:`${duration.value}` });
   const tripRequest = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(trip)
   };
   fetchPost(tripRequest)
-    .then(respondSuccess())
+    .then(respondSuccess(trip, destination))
     .then(getData(currentUser.id))
     .catch(error => respondError(error));
   form.reset();
@@ -113,12 +113,12 @@ function checkForm() {
     };
 };
 
-function respondSuccess() {
+function respondSuccess(trip, destinationObj) {
   unhide(responseMessage);
-  responseMessage.innerText = "Your request was submitted!";
+  responseMessage.innerText = `Request submitted! Your estimated total is ${trip.calculateCost(destinationObj)}.`;
   setTimeout(function() {
     hide(responseMessage);
-  }, 2000);
+  }, 3000);
 };
 
 function respondError(error) {
@@ -141,26 +141,29 @@ function renderUserCards() {
   myTripsSection.innerHTML = "";
   const userTrips = currentUser.filterTravelersTrips(allTrips);
   userTrips.forEach(tripObj => {
-    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-    myTripsSection.appendChild(createACard(destinationObj, tripObj))
+    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID);
+    const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+    myTripsSection.appendChild(createACard(destinationObj, classedTrip));
   })
 };
 
 function renderFilteredTrips(filter) {
   myTripsSection.innerHTML = "";
-  const userTrips = currentUser.filterTravelersTrips(allTrips);
+  const userTrips = currentUser.filterTravelersTrips(allTrips)
   if(filter === 'past') {
     userTrips.forEach(tripObj => {
       if(calculateStatus(tripObj) === 'past') {
-      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID);
+      const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+      myTripsSection.appendChild(createACard(destinationObj, classedTrip));
       };
     });
   } else {
     userTrips.forEach(tripObj => {
       if(calculateStatus(tripObj) !== 'past') {
       const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+      const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+      myTripsSection.appendChild(createACard(destinationObj, classedTrip));
       };
     });
   };
@@ -177,6 +180,7 @@ function createACard(destinationObj, tripObj) {
                           <div class="card-content" id="card-content">
                           <p id="location">${destinationObj.destination}</p>
                           <p id="date">${formattedDate} - ${endDate}</p>
+                          <p id="price">${tripObj.calculateCost(destinationObj)}</p>
                           </div>`;
   return newElement;
 };
