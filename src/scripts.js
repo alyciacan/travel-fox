@@ -198,11 +198,11 @@ function changeViewTripsBtn() {
   } else if (viewTripsBtn.innerText === 'view upcoming trips') {
     heading.innerText = 'My upcoming trips'
     viewTripsBtn.innerText = 'view past trips';
-    renderFilteredTrips();
+    renderFilteredTrips('future');
   } else if (viewTripsBtn.innerText === 'view past trips') {
     heading.innerText = 'My past trips'
     viewTripsBtn.innerText = 'view all trips'
-    renderPastTripsOnly();
+    renderFilteredTrips('past');
   };
 };
 
