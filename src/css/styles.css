@@ -7,11 +7,11 @@
 }
 
 .header {
+  align-items: center;
   background-color: black;
   color: white;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 100vw;
 }
 
@@ -29,11 +29,11 @@
 }
 
 .main-section {
-  width: 100vw;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   grid-template-areas:
-    "navbar main main main main main"
+    "navbar main main main main main";
+  grid-template-columns: repeat(6, 1fr);
+  width: 100vw;
 }
 
 .main-section__content {
@@ -42,19 +42,19 @@
 }
 
 .nav-bar {
-  grid-area: navbar;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  grid-area: navbar;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .nav-bar_p {
   cursor: pointer;
-  width: 100%;
-  text-align: center;
-  padding: 50px 30px 50px 30px;
   font-size: 140%;
+  padding: 30px;
+  text-align: center;
+  width: 100%;
 }
 
 .nav-bar_p:hover {
@@ -67,32 +67,32 @@
 }
 
 .image-container {
-  width: 100%;
+  max-height: 275px;
   object-fit: cover;
   overflow: hidden;
-  max-height: 275px;
+  width: 100%;
 }
 
 .main-section__content-img {
+  height: 100%;
   object-fit: cover;
   object-position: 0px -300px;
   width: 100%;
-  height: 100%;
 }
 
 .card-container {
   display: grid;
-  margin: 0px 18px 0px 18px;
-  grid-template-columns: repeat(auto-fit, 16rem);
   gap: 2rem;
+  grid-template-columns: repeat(auto-fit, 16rem);
+  margin: 0px 18px 0px 18px;
 }
 
 .card-img {
-  width: 100%;
+  display: block;
   height: 94px;
   object-fit: cover;
-  display: block;
   object-position: center center;
+  width: 100%;
 }
 
 .submit {
@@ -101,12 +101,12 @@
 }
 
 .box {
-  overflow: hidden;
   border-radius: 25px;
-  height: 210px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  height: 210px;
+  overflow: hidden;
   position: relative;
 }
 
@@ -124,16 +124,16 @@ h4,
 
 .total-expenses {
   font-size: 150%;
-  margin: 20px 0px 20px 0px;
   font-weight: bold;
+  margin: 20px 0px 20px 0px;
 }
 
 .total-expenses-container {
-  padding: 15px;
   border: 3px solid #06BCC1;
   border-radius: 25px;
-  margin-top: 25px;
   box-shadow: 0px 3px 8px #06BCC1;
+  margin-top: 25px;
+  padding: 15px;
 }
 
 .box:hover {
@@ -141,23 +141,23 @@ h4,
 }
 
 .form-container {
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
   background: white;
   border-radius: 25px;
-  padding: 10px 25px 25px 25px;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
   height: 310px;
+  left: 25px;
+  padding: 10px 25px 25px 25px;
+  position: absolute;
+  top: 25px;
+  z-index: 2;
 }
 
 label {
   display: block;
-  margin: 10px;
   font-size: 125%;
+  margin: 10px;
 }
 
 input,
@@ -166,59 +166,59 @@ select {
 }
 
 .float {
-  position: absolute;
-  top: 10%;
-  right: 5%;
   background-color: #F564A9;
   border-radius: 25px;
-  padding: 7px;
   color: white;
+  padding: 7px;
+  position: absolute;
+  right: 5%;
+  top: 10%;
 }
 
 .card-content {
-  padding: 10px;
-  line-height: 150%;
-  font-size: 115%;
   display: flex;
   flex-direction: column;
+  font-size: 115%;
+  line-height: 150%;
   overflow: scroll;
+  padding: 10px;
 }
 
 .login-page {
-  position: fixed;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
   align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
 }
 
 .screen {
-  position: fixed;
-  opacity: .7;
   background-color: white;
-  width: 100%;
   height: 100%;
+  opacity: .7;
+  position: fixed;
+  width: 100%;
   z-index: 3;
 }
 
 .login-container {
+  align-items: center;
   background-color: white;
+  border-radius: 25px;
+  box-shadow: inset 0 0 10px #F564A9;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  height: 50%;
   padding: 40px;
-  height: fit-content;
   width: fit-content;
   z-index: 5;
-  box-shadow: inset 0 0 10px #F564A9;
-  border-radius: 25px;
 }
 
 .login-fox {
-  max-height: 75px;
   display: block;
+  max-height: 75px;
 }
 
 form > p {
@@ -234,16 +234,12 @@ h3 {
 }
 
 #submit-btn {
-  padding: 8px;
-  border-radius: 25px;
   background-color: #6B818C;
+  border: 3px solid gray;
+  padding: 8px;
   color: white;
   cursor: pointer;
-  border: 3px solid gray;
-}
-
-#nav-bar__my-trips {
-  height: 155px;
+  border-radius: 25px;
 }
 
 .hidden {

@@ -45,9 +45,6 @@ let allTrips;
 let currentUser;
 
 //EVENT LISTENERS:
-// window.addEventListener('load', function() {
-//   getData(14);
-// });
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
 submitBtn.addEventListener('click', checkForm);
@@ -55,7 +52,7 @@ viewTripsBtn.addEventListener('click', changeViewTripsBtn);
 loginBtn.addEventListener('click', checkLogin);
 
 function checkLogin() {
-  if (!username.value && !password.value) {
+  if (!username.value || !password.value) {
     loginValidationMsg.innerText = "you must complete both fields!";
   } else if (password.value !== 'travel') {
     loginValidationMsg.innerText = "wrong password, try again.";
