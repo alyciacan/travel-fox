@@ -12,6 +12,7 @@ dayjs.extend(isSameOrBefore);
 import './images/Oregon.png';
 import './images/travelfox.png';
 import './images/travelfox_white_notext.svg';
+import './images/travelfox_pink_notext.svg';
 
 //QUERY SELECTORS:
 const welcomeName = document.getElementById('header__welcome-message-name');
@@ -31,6 +32,11 @@ const duration = document.getElementById('duration');
 const responseMessage = document.getElementById('responseMessage');
 const form = document.getElementById('new-trip-form');
 const heading = document.getElementById('my-trips');
+const loginBtn = document.getElementById('login-btn');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const loginValidationMsg = document.getElementById('login-validation-msg');
+const loginPage = document.getElementById('login-page');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -39,13 +45,26 @@ let allTrips;
 let currentUser;
 
 //EVENT LISTENERS:
-window.addEventListener('load', function() {
-  getData(14);
-});
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 newTripBtn.addEventListener('click', showOrHideRequestForm);
 submitBtn.addEventListener('click', checkForm);
 viewTripsBtn.addEventListener('click', changeViewTripsBtn);
+loginBtn.addEventListener('click', checkLogin);
+
+function checkLogin() {
+  if (!username.value || !password.value) {
+    loginValidationMsg.innerText = "you must complete both fields!";
+  } else if (password.value !== 'travel') {
+    loginValidationMsg.innerText = "wrong password, try again.";
+  } else {
+    logIn(username.value);
+  };
+};
+
+function logIn(username) {
+  getData(username.slice(8));
+  hide(loginPage);
+};
 
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
