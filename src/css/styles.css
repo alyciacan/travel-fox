@@ -97,7 +97,7 @@
 
 .submit {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .box {
@@ -182,6 +182,47 @@ select {
   display: flex;
   flex-direction: column;
   overflow: scroll;
+}
+
+.login-page {
+  position: fixed;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.screen {
+  position: fixed;
+  opacity: .7;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.login-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  height: fit-content;
+  width: fit-content;
+  z-index: 5;
+  box-shadow: inset 0 0 10px #F564A9;
+  border-radius: 25px;
+}
+
+.login-fox {
+  max-height: 75px;
+  display: block;
+}
+
+form > p {
+  margin: 15px;
 }
 
 h1, h3 {

@@ -12,6 +12,7 @@ dayjs.extend(isSameOrBefore);
 import './images/Oregon.png';
 import './images/travelfox.png';
 import './images/travelfox_white_notext.svg';
+import './images/travelfox_pink_notext.svg';
 
 //QUERY SELECTORS:
 const welcomeName = document.getElementById('header__welcome-message-name');
