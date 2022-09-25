@@ -18,10 +18,11 @@
       <img class="login-fox" src="./images/travelfox_pink_notext.svg" alt="Pink cartoon fox logo" />
       <h1>hey there, traveler!  log in here:</h1>
       <form>
-        <label for="username">username:<input type="username" maxlength="15"/></label>
-        <label for="password">password:<input type="password" maxlength="15"/></label>
-        <label for="submit" class="submit"><input type="button" id="submit-btn" value="Submit"/></label>
+        <label for="username">username:<input type="username" maxlength="15" id="username"/></label>
+        <label for="password">password:<input type="password" maxlength="15" id="password"/></label>
+        <label for="submit" class="submit"><input type="button" id="login-btn" value="Submit"/></label>
       </form>
+      <p id="login-validation-msg" class="responseMessage"></p>
     </div>
   </section>
   <header id="header" class="header">
@@ -57,7 +58,7 @@
             </select>
           </label>
           <label for="submit" class="submit"><input type="button" id="submit-btn" value="Submit"/></label>
-          <p id="responseMessage" class="hidden"></p>
+          <p id="responseMessage" class="responseMessage hidden"></p>
         </form>
       </section>
       <h1>
