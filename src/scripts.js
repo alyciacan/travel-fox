@@ -62,7 +62,7 @@ function checkLogin() {
 };
 
 function logIn(username) {
-  getData(username);
+  getData(username.slice(8));
   hide(loginPage);
 };
 
