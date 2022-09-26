@@ -168,24 +168,18 @@ function renderUserCards() {
 
 function renderFilteredTrips(filter) {
   myTripsSection.innerHTML = "";
-  const userTrips = currentUser.filterTravelersTrips(allTrips)
-  if(filter === 'past') {
-    userTrips.forEach(tripObj => {
-      if(calculateStatus(tripObj) === 'past') {
-      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID);
-      const classedTrip = new Trip(currentUser, destinationObj, tripObj);
-      myTripsSection.appendChild(createACard(destinationObj, classedTrip));
+  const userTrips = currentUser.filterTravelersTrips(allTrips).filter(trip => {
+    if(filter === 'past') {
+      return calculateStatus(trip) === 'past';
+    } else {
+      return calculateStatus(trip) !== 'past';
       };
     });
-  } else {
-    userTrips.forEach(tripObj => {
-      if(calculateStatus(tripObj) !== 'past') {
-      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-      const classedTrip = new Trip(currentUser, destinationObj, tripObj);
-      myTripsSection.appendChild(createACard(destinationObj, classedTrip));
-      };
+  userTrips.forEach(tripObj => {
+    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+    const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+    myTripsSection.appendChild(createACard(destinationObj, classedTrip));
     });
-  };
 };
 
 function createACard(destinationObj, tripObj) {
