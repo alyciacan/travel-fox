@@ -58,7 +58,7 @@
 }
 
 .nav-bar_p:hover {
-  color: #F564A9;
+  color: #F452A1;
 }
 
 .active {
@@ -166,7 +166,7 @@ select {
 }
 
 .float {
-  background-color: #F564A9;
+  background-color: #F452A1;
   border-radius: 25px;
   color: white;
   padding: 7px;
@@ -207,7 +207,7 @@ select {
   align-items: center;
   background-color: white;
   border-radius: 25px;
-  box-shadow: inset 0 0 10px #F564A9;
+  box-shadow: inset 0 0 10px #F452A1;
   display: flex;
   flex-direction: column;
   height: 50%;
@@ -225,11 +225,11 @@ form > p {
   margin: 15px;
 }
 
-h1, h3 {
+h1, h2 {
   padding: 20px;
 }
 
-h3 {
+h2 {
   text-align: center;
 }
 
@@ -244,4 +244,14 @@ h3 {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 1160px) {
+  .main-section__content-img {
+    height: 100%;
+    object-fit: cover;
+    object-position: 0px 100px;
+    width: 100%;
+    /* try hard-coding proportions */
+  }
 }
