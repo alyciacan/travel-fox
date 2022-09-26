@@ -103,7 +103,7 @@
 .box {
   overflow: hidden;
   border-radius: 25px;
-  max-height: 180px;
+  height: 186px;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
@@ -173,18 +173,19 @@ select {
   position: absolute;
   top: 10%;
   right: 5%;
-  background-color: #F564A9;
+  background-color: #F01981;
   border-radius: 25px;
   padding: 7px;
   color: white;
   font-weight: bold;
-  font-size: 125%;
+  font-size: 120%;
 }
 
 .card-content {
   padding: 10px;
   line-height: 150%;
   font-size: 115%;
+  overflow: scroll;
 }
 
 h1 {
