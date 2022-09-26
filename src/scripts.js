@@ -111,6 +111,7 @@ function submitForm() {
 };
 
 function checkForm() {
+  event.preventDefault();
   if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
     && numTravelers.value
     && destinationChooser.value
