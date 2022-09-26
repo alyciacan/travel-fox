@@ -127,23 +127,23 @@ function checkForm() {
       submitForm();
     } else if (dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')) {
       responseMessage.innerText = "Please select a date in the future!";
-      unhide(responseMessage);
+      reveal(responseMessage);
     } else {
       responseMessage.innerText = "Please complete all fields!";
-      unhide(responseMessage);
+      reveal(responseMessage);
     };
 };
 
 function respondSuccess(trip, destinationObj) {
-  unhide(responseMessage);
+  reveal(responseMessage);
   responseMessage.innerText = `Request submitted! Your estimated total is ${trip.calculateCost(destinationObj)}.`;
   setTimeout(function() {
-    hide(responseMessage);
+    obscure(responseMessage);
   }, 3000);
 };
 
 function respondError(error) {
-  unhide(responseMessage);
+  reveal(responseMessage);
   responseMessage.innerText = error;
   setTimeout(function() {
     hide(responseMessage);
@@ -274,4 +274,8 @@ function hide(element) {
 
 function reveal(element) {
   element.classList.remove('transparent');
-}
+};
+
+function obscure(element) {
+  element.classList.add('transparent');
+};

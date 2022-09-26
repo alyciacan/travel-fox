@@ -120,6 +120,7 @@ h4,
   color: #06BCC1;
   font-weight: bold;
   text-align: center;
+  margin-top: 8px;
   max-width: 80%;
 }
 
@@ -205,6 +206,7 @@ select {
 }
 
 .login-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   min-height: fit-content;
@@ -261,7 +263,7 @@ h2, h3 {
 }
 
 .transparent {
-  opacity: 0%;
+  visibility: hidden;
 }
 
 @media (max-width: 1160px) {
