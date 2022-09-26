@@ -11,8 +11,22 @@
   <meta charset="UTF-8">
 </head>
 <body>
+  <section id="login-page" class="login-page">
+    <div class="screen">
+    </div>
+    <div class="login-container">
+      <img class="login-fox" src="./images/travelfox_pink_notext.svg" alt="Pink cartoon fox logo" />
+      <h1>hey there, traveler!  log in here:</h1>
+      <form>
+        <label for="username">username: <input type="username" maxlength="15" id="username"/></label>
+        <label for="password">password: <input type="password" maxlength="15" id="password"/></label>
+        <label for="submit" class="submit"><input type="button" id="login-btn" value="Submit"/></label>
+      </form>
+      <p id="login-validation-msg" class="responseMessage"></p>
+    </div>
+  </section>
   <header id="header" class="header">
-    <h3 id="header__welcome-message">Hello, <span id="header__welcome-message-name"></span>!</h3>
+    <h2 id="header__welcome-message">Hello, <span id="header__welcome-message-name"></span>!</h2>
     <div class="header__logo-container">
       <img src="./images/travelfox.png" alt="Stylized TravelFox lettering" class="logo"/>
       <img src="./images/travelfox_white_notext.svg" alt="Stylized white fox logo" class="logo"/>

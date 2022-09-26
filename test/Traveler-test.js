@@ -6,9 +6,12 @@ describe ('Traveler', () => {
   let ellynn;
   let tripsArray;
   let destinationsArray;
+  let otherTraveler;
 
   beforeEach(() => {
     ellynn = new Traveler({ id: 14, name: "Ellynn Kyne", travelerType: "history buff" });
+    otherTraveler = new Traveler({ id: 555, name: "Prince Charles", travelerType: "royalty" });
+
     tripsArray = [{
       id: 13,
       userID: 14,
@@ -89,6 +92,16 @@ describe ('Traveler', () => {
   it('should be a function', () => {
     expect(Traveler).to.be.a('function');
   });
+
+  it('should have an unique id', () => {
+    expect(otherTraveler.id).to.equal(555);
+    expect(ellynn.id).to.not.equal(otherTraveler.id);
+  });
+
+  it('should have a name and traveler type', () => {
+    expect(ellynn.name).to.equal('Ellynn Kyne');
+    expect(ellynn.travelerType).to.equal('history buff');
+  })
 
   it('should be able to return a list of only the traveler\'s trips', () => {
     expect(ellynn.filterTravelersTrips(tripsArray)).to.deep.equal([tripsArray[0], tripsArray[2], tripsArray[3]])

@@ -12,6 +12,7 @@ dayjs.extend(isSameOrBefore);
 import './images/Oregon.png';
 import './images/travelfox.png';
 import './images/travelfox_white_notext.svg';
+import './images/travelfox_pink_notext.svg';
 
 //QUERY SELECTORS:
 const welcomeName = document.getElementById('header__welcome-message-name');
@@ -31,6 +32,11 @@ const duration = document.getElementById('duration');
 const responseMessage = document.getElementById('responseMessage');
 const form = document.getElementById('new-trip-form');
 const heading = document.getElementById('my-trips');
+const loginBtn = document.getElementById('login-btn');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+const loginValidationMsg = document.getElementById('login-validation-msg');
+const loginPage = document.getElementById('login-page');
 
 //GLOBAL VARIABLES:
 let currentYear = dayjs().format('YYYY');
@@ -39,9 +45,6 @@ let allTrips;
 let currentUser;
 
 //EVENT LISTENERS:
-window.addEventListener('load', function() {
-  getData(14);
-});
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
 reviewExpensesBtn.addEventListener('keyup', function(e) {
   if(e.keyCode === 13) { showOrHideExpenses() }
@@ -58,6 +61,22 @@ viewTripsBtn.addEventListener('click', changeViewTripsBtn);
 viewTripsBtn.addEventListener('keyup', function(e) {
   if(e.keyCode === 13) { changeViewTripsBtn() }
   });
+loginBtn.addEventListener('click', checkLogin);
+
+function checkLogin() {
+  if (!username.value || !password.value) {
+    loginValidationMsg.innerText = "you must complete both fields!";
+  } else if (password.value !== 'travel') {
+    loginValidationMsg.innerText = "wrong password, try again.";
+  } else {
+    logIn(username.value);
+  };
+};
+
+function logIn(username) {
+  getData(username.slice(8));
+  hide(loginPage);
+};
 
 function getData(userID) {
   Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
@@ -97,14 +116,14 @@ function submitForm() {
   const date = dayjs(startDate.value).format('YYYY/MM/DD');
   const destination = allDestinations
     .find(destinationObj => destinationObj.destination === destinationChooser.value);
-  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, startDate: date, duration:`${duration.value}` });
+  const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, date: date, duration:`${duration.value}` });
   const tripRequest = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(trip)
   };
   fetchPost(tripRequest)
-    .then(respondSuccess())
+    .then(respondSuccess(trip, destination))
     .then(getData(currentUser.id))
     .catch(error => respondError(error));
   form.reset();
@@ -126,12 +145,12 @@ function checkForm() {
     };
 };
 
-function respondSuccess() {
+function respondSuccess(trip, destinationObj) {
   unhide(responseMessage);
-  responseMessage.innerText = "Your request was submitted!";
+  responseMessage.innerText = `Request submitted! Your estimated total is ${trip.calculateCost(destinationObj)}.`;
   setTimeout(function() {
     hide(responseMessage);
-  }, 2000);
+  }, 3000);
 };
 
 function respondError(error) {
@@ -154,29 +173,26 @@ function renderUserCards() {
   myTripsSection.innerHTML = "";
   const userTrips = currentUser.filterTravelersTrips(allTrips);
   userTrips.forEach(tripObj => {
-    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-    myTripsSection.appendChild(createACard(destinationObj, tripObj))
+    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID);
+    const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+    myTripsSection.appendChild(createACard(destinationObj, classedTrip));
   })
 };
 
 function renderFilteredTrips(filter) {
   myTripsSection.innerHTML = "";
-  const userTrips = currentUser.filterTravelersTrips(allTrips);
-  if(filter === 'past') {
-    userTrips.forEach(tripObj => {
-      if(calculateStatus(tripObj) === 'past') {
-      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-      myTripsSection.appendChild(createACard(destinationObj, tripObj))
+  const userTrips = currentUser.filterTravelersTrips(allTrips).filter(trip => {
+    if(filter === 'past') {
+      return calculateStatus(trip) === 'past';
+    } else {
+      return calculateStatus(trip) !== 'past';
       };
     });
-  } else {
-    userTrips.forEach(tripObj => {
-      if(calculateStatus(tripObj) !== 'past') {
-      const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
-      myTripsSection.appendChild(createACard(destinationObj, tripObj))
-      };
+  userTrips.forEach(tripObj => {
+    const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID)
+    const classedTrip = new Trip(currentUser, destinationObj, tripObj);
+    myTripsSection.appendChild(createACard(destinationObj, classedTrip));
     });
-  };
 };
 
 function createACard(destinationObj, tripObj) {
@@ -190,6 +206,7 @@ function createACard(destinationObj, tripObj) {
                           <div class="card-content" id="card-content">
                           <p id="location">${destinationObj.destination}</p>
                           <p id="date">${formattedDate} - ${endDate}</p>
+                          <p id="price">${tripObj.calculateCost(destinationObj)}</p>
                           </div>`;
   return newElement;
 };
