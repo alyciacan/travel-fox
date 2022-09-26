@@ -54,8 +54,10 @@ loginBtn.addEventListener('click', checkLogin);
 function checkLogin() {
   if (!username.value || !password.value) {
     loginValidationMsg.innerText = "you must complete both fields!";
+    reveal(loginValidationMsg);
   } else if (password.value !== 'travel') {
     loginValidationMsg.innerText = "wrong password, try again.";
+    reveal(loginValidationMsg);
   } else {
     logIn(username.value);
   };
@@ -269,3 +271,7 @@ function unhide(element) {
 function hide(element) {
   element.classList.add('hidden');
 };
+
+function reveal(element) {
+  element.classList.remove('transparent');
+}

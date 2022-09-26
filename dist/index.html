@@ -14,15 +14,15 @@
   <section id="login-page" class="login-page">
     <div class="screen">
     </div>
-    <div class="login-container">
+    <div class="login-form-container">
       <img class="login-fox" src="./images/travelfox_pink_notext.svg" alt="Pink cartoon fox logo" />
       <h1>hey there, traveler!  log in here:</h1>
-      <form>
+      <form class="login-container">
         <label for="username">username: <input type="username" maxlength="15" id="username"/></label>
         <label for="password">password: <input type="password" maxlength="15" id="password"/></label>
-        <label for="submit" class="submit"><input type="button" id="login-btn" value="Submit"/></label>
+        <button label="login-btn" class="submit" type="button" id="login-btn">log me in</button>
       </form>
-      <p id="login-validation-msg" class="responseMessage"></p>
+      <p id="login-validation-msg" class="responseMessage transparent"></p>
     </div>
   </section>
   <header id="header" class="header">
@@ -53,11 +53,11 @@
           <label for="start-date">Departure date: <input type="date" id="start-date"/></label>
           <label for="duration">Number of nights: <input type="number" id="duration"/></label>
           <label for="num-travelers">Number of travelers: <input type="number" id="num-travelers"/></label>
-          <label for="destination">Destination:
+          <label for="destinations">Destination:
             <select name="destination" id="destinations">
             </select>
           </label>
-          <label for="submit" class="submit"><input type="button" id="submit-btn" value="Submit"/></label>
+          <button label="submit-btn" class="submit" type="button" id="submit-btn">Submit</button>
           <p id="responseMessage" class="responseMessage hidden"></p>
         </form>
       </section>
