@@ -1,87 +1,100 @@
-### TravelFox
 
-## Setup
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+<div align="center">
+<img src="https://user-images.githubusercontent.com/105533317/192172668-a944e3b7-136d-47b2-8f18-1b37540e765d.svg"  width="120" height="120">
+</div>
 
-Then install the library dependencies. Run:
+  <h2 align="center">travelfox</h2>
 
-```bash
-npm install
-```
+  <p align="center">
+    The all-in-one vacation station for the choosy world-traveler.
+  </p>
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
 
-## Where to Add Your Code
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#wins and challenges">Wins & Challenges</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-### JavaScript
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
 
-**Create all of your feature code files in the `src` directory.**
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+### Built With
 
-### HTML
+* ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)   
+* ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)           
+* ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) 
+* ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)          
+* ![Mocha](https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white)      
+* ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)      
+* ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)         
 
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
 
-### Images
+<!-- GETTING STARTED -->
+## Getting Started
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
+### Installation
+<ol>
+  <li>Fork this Repo</li>
+  <li>Clone it down to your machine</li>
+  <li>cd into the root of the project directory</li>
+  <li>run npm install</li>
+  <li>To verify that it is setup correctly, run `npm start` in your terminal to start the local server. You will see a bunch of lines output to your terminal. One of those lines will be something like: Project is running at http://localhost:8080/.</li>
+  <li>Go to http://localhost:8080/ in your browser to view the code running in the browser.</li>
+  <li>Enter control + c in your terminal to stop the local server at any time.</li>
+  <li>You will also need to clone down [this local api server](https://github.com/turingschool-examples/travel-tracker-api) outside of the Travel Fox directory, follow the installation instructions, and have it running in a separate tab in your terminal each time you run the client.</li>
+</ol>
 
-## How to View Your Code in Action
+<!-- CONTEXT -->
+## Context
+__Me:__ I'm a student in the Front End program at [Turing School of Software and Design](https://frontend.turing.edu/). TravelFox is my solo final project for Mod 2, which means I have been a dev for just under 3 months!
+__The project:__      
+Travel Tracker is a solo assignment that serves as an end-of-mod assessment, so students can flex 💪 their skills and understanding. The goals for this project include:    
+* Using _object-oriented programming_ to drive application design
+* Working with an API to _get_ and _post_ data
+* Create a _robust test suite_ to test all functionality
 
-In the terminal, run:
+Other features I want to highlight:         
+* Accessibility: app is fully _tabbable_, and scored high on both Lighthouse and Wave audits         
+* Functions follow the single responsibility principle (SRP)     
+* Clean, attractive design     
+* Error handling: form validation, clear error and confirmation messaging        
+* 3rd part library: I opted to use dayjs, which required independent study and testing    
 
-```bash
-npm start
-```
 
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
+<!-- CONTACT -->
+## Contact
 
-```bash
-Project is running at http://localhost:8080/
-```
+Alycia Canavan - alycia.canavan@gmail.com - [LinkedIn](https://www.linkedin.com/in/alycia-canavan/) - [GitHub](https://github.com/alyciacan)
 
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
 
----
+Deployed Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
-## Test Files Organization
+<!-- WINS AND CHALLENGES -->
 
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+Shout out to my Project Manager, Cass, for her patience and support!
 
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
