@@ -39,9 +39,9 @@ Deployed Project: [https://github.com/your_username/repo_name](https://github.co
 
 ### Screenshots:          
 <div align="center">
-<img alt="gif from Travelfox" src="https://user-images.githubusercontent.com/105533317/192441604-db746ca9-1782-4ac5-861f-fa1d2b40b100.gif"</div>
+<img alt="gif from Travelfox" src="https://user-images.githubusercontent.com/105533317/192441604-db746ca9-1782-4ac5-861f-fa1d2b40b100.gif"></div>
 <div align="center">
-<img alt="gif from Travelfox" src="https://user-images.githubusercontent.com/105533317/192577608-dcc3e632-7ac3-430c-973a-e2dede77323c.gif"</div>
+<img alt="gif from Travelfox" src="https://user-images.githubusercontent.com/105533317/192577608-dcc3e632-7ac3-430c-973a-e2dede77323c.gif"></div>
 
 
 
@@ -54,7 +54,7 @@ Deployed Project: [https://github.com/your_username/repo_name](https://github.co
   <li>cd into the root of the project directory</li>
   <li>run npm install</li>
   <li>To verify that it is setup correctly, run `npm start` in your terminal to start the local server. You will see a bunch of lines output to your terminal. One of those lines will be something like: Project is running at http://localhost:8080/.</li>
-  <li>Go to __http://localhost:8080/__ in your browser to view the code running in the browser.</li>
+  <li>Go to http://localhost:8080/ in your browser to view the code running in the browser.</li>
   <li>Enter control + c in your terminal to stop the local server at any time.</li>
   <li>You will also need to clone down [this local api server](https://github.com/turingschool-examples/travel-tracker-api) outside of the Travel Fox directory, follow the installation instructions, and have it running in a separate tab in your terminal each time you run the client.</li>
 </ol>
@@ -70,18 +70,18 @@ Alycia Canavan - alycia.canavan@gmail.com - [LinkedIn](https://www.linkedin.com/
 ## Wins and Challenges
 ### Wins:    
 🏆 I learned a TON of CSS for this project        
-🏆 Relatively painless application of _get_ and _post_ fetch requests
-🏆 Logical use of object classes
-🏆 Taught myself to use dayjs for multiple applications        
-🏆 Using media queries and breakpoints for the first time ever         
+🏆 Relatively painless application of _get_ and _post_ fetch requests           
+🏆 Logical use of object classes           
+🏆 Taught myself to use dayjs for multiple applications         
+🏆 Using media queries and breakpoints for the first time ever          
 
 
 ### Challenges:       
-🤔 11th hour bug in which I discovered a timing issue when new trip requests are submitted
+🤔 11th hour bug in which I discovered a timing issue when new trip requests are submitted (server problem!)                 
 🤔 Tricky photo formatting       
 
 ### Future Directions:         
-* Add dashboard and functionality for travel agent use
+* Add dashboard and functionality for travel agent use        
 * Add more options for users to access data about their previous and upcoming trips        
 
 ## Acknowledgments         
