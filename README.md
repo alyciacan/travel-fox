@@ -27,6 +27,13 @@ Other features I want to highlight:
 * Error handling: form validation, clear error and confirmation messaging        
 * 3rd party library: I opted to use dayjs, which required independent study and testing    
 
+<div align="center"><img width="800" alt="Travelfox screenshot" src="https://user-images.githubusercontent.com/105533317/192440100-1ac07935-3055-4848-880c-81f66ebd04c0.png"></div>
+
+<div align="center"><img width="800" alt="gif" src="https://user-images.githubusercontent.com/105533317/192441266-7aa2fc41-81b8-48d0-82a6-91a81014fea6.gif"></div>
+
+<div align="center"><img width="800" alt="gif" src="https://user-images.githubusercontent.com/105533317/192441604-db746ca9-1782-4ac5-861f-fa1d2b40b100.gif"></div>
+
+
 
 ### Built With
 
@@ -75,7 +82,12 @@ __Wins:__
 __Challenges__             
 🤔 Adjusting CSS to make the Wave audit happy          
 🤔 Working through some tricky bugs in form submission / rendering of new trips to the DOM          
-🤔 Writing my first media query and breakpoints       
+🤔 Writing my first media query and breakpoints     
+ 
+## Future Iterations:     
+* Add a travel agent log-in and dashboard      
+* Add a search feature for users to search their trips          
+* Further explore design and functionality for mobile platform        
 
 ## Acknowledgments
 
