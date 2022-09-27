@@ -121,7 +121,6 @@ function submitForm() {
 
 function checkForm() {
   if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
-    // && numTravelers.value
     && destinationChooser.value
     && startDate.value
     && numTravelers.value > 0
@@ -132,6 +131,7 @@ function checkForm() {
       reveal(responseMessage);
     } else if (numTravelers.value <= 0 || duration.value <= 0) {
       responseMessage.innerText = "Please check your numbers!"
+      reveal(responseMessage);
     } else {
       responseMessage.innerText = "Please complete all fields!";
       reveal(responseMessage);
