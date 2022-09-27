@@ -46,9 +46,21 @@ let currentUser;
 
 //EVENT LISTENERS:
 reviewExpensesBtn.addEventListener('click', showOrHideExpenses);
+reviewExpensesBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { showOrHideExpenses() }
+  });
 newTripBtn.addEventListener('click', showOrHideRequestForm);
+newTripBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { showOrHideRequestForm() }
+  });
 submitBtn.addEventListener('click', checkForm);
+submitBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { checkForm() }
+  });
 viewTripsBtn.addEventListener('click', changeViewTripsBtn);
+viewTripsBtn.addEventListener('keyup', function(e) {
+  if(e.keyCode === 13) { changeViewTripsBtn() }
+  });
 loginBtn.addEventListener('click', checkLogin);
 
 function checkLogin() {
@@ -120,6 +132,7 @@ function submitForm() {
 };
 
 function checkForm() {
+  event.preventDefault();
   if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
     && destinationChooser.value
     && startDate.value
