@@ -91,6 +91,7 @@ function getData(userID) {
 };
 
 function generatePageLoad(user) {
+  console.log('generate page load was triggered');
   renderUserGreeting();
   renderUserExpenditures();
   renderUserCards();
@@ -180,8 +181,10 @@ function renderUserExpenditures() {
 };
 
 function renderUserCards() {
+  console.log('renderUserCards triggered!');
   myTripsSection.innerHTML = "";
   const userTrips = currentUser.filterTravelersTrips(allTrips);
+  console.log(userTrips);//is it because the post hasn't come back
   userTrips.forEach(tripObj => {
     const destinationObj = allDestinations.find(destination => destination.id === tripObj.destinationID);
     const classedTrip = new Trip(currentUser, destinationObj, tripObj);

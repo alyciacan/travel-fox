@@ -12,13 +12,12 @@ const fetchUserData = (userID) => {
 
 const fetchPost = (newTripObj) => {
   return fetch('http://localhost:3001/api/v1/trips', newTripObj)
-  // .then(response => response.json())
-  .then(response => {
-    if(!response.ok) {
-      throw new Error("Sorry, your request was not submitted. Please try again.");
-    };
-    return response.json();
-  });
+    .then(response => {
+      if(!response.ok) {
+        throw new Error("Sorry, your request was not submitted. Please try again.");
+      };
+      return response.json();
+    });
 };
 
 export { fetchData, fetchUserData, fetchPost }
