@@ -133,23 +133,27 @@ function submitForm() {
 
 function checkForm() {
   event.preventDefault();
-  if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
+  if(checkInputs()) {
+    submitForm();
+  } else if (dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')) {
+    responseMessage.innerText = "Please select a date in the future!";
+    reveal(responseMessage);
+  } else if (numTravelers.value <= 0 || duration.value <= 0) {
+    responseMessage.innerText = "Please check your numbers!"
+    reveal(responseMessage);
+  } else {
+    responseMessage.innerText = "Please complete all fields!";
+    reveal(responseMessage);
+  };
+};
+
+function checkInputs() {
+  return (!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
     && destinationChooser.value
     && startDate.value
     && numTravelers.value > 0
-    && duration.value > 0) {
-      submitForm();
-    } else if (dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')) {
-      responseMessage.innerText = "Please select a date in the future!";
-      reveal(responseMessage);
-    } else if (numTravelers.value <= 0 || duration.value <= 0) {
-      responseMessage.innerText = "Please check your numbers!"
-      reveal(responseMessage);
-    } else {
-      responseMessage.innerText = "Please complete all fields!";
-      reveal(responseMessage);
-    };
-};
+    && duration.value > 0)
+}
 
 function respondSuccess(trip, destinationObj) {
   reveal(responseMessage);
