@@ -66,8 +66,10 @@ loginBtn.addEventListener('click', checkLogin);
 function checkLogin() {
   if (!username.value || !password.value) {
     loginValidationMsg.innerText = "you must complete both fields!";
+    reveal(loginValidationMsg);
   } else if (password.value !== 'travel') {
     loginValidationMsg.innerText = "wrong password, try again.";
+    reveal(loginValidationMsg);
   } else {
     logIn(username.value);
   };
@@ -132,29 +134,33 @@ function submitForm() {
 function checkForm() {
   event.preventDefault();
   if(!dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')
-    && numTravelers.value
     && destinationChooser.value
-    && startDate.value) {
+    && startDate.value
+    && numTravelers.value > 0
+    && duration.value > 0) {
       submitForm();
     } else if (dayjs(startDate.value).isSameOrBefore(dayjs(), 'day')) {
       responseMessage.innerText = "Please select a date in the future!";
-      unhide(responseMessage);
+      reveal(responseMessage);
+    } else if (numTravelers.value <= 0 || duration.value <= 0) {
+      responseMessage.innerText = "Please check your numbers!"
+      reveal(responseMessage);
     } else {
       responseMessage.innerText = "Please complete all fields!";
-      unhide(responseMessage);
+      reveal(responseMessage);
     };
 };
 
 function respondSuccess(trip, destinationObj) {
-  unhide(responseMessage);
+  reveal(responseMessage);
   responseMessage.innerText = `Request submitted! Your estimated total is ${trip.calculateCost(destinationObj)}.`;
   setTimeout(function() {
-    hide(responseMessage);
+    obscure(responseMessage);
   }, 3000);
 };
 
 function respondError(error) {
-  unhide(responseMessage);
+  reveal(responseMessage);
   responseMessage.innerText = error;
   setTimeout(function() {
     hide(responseMessage);
@@ -281,4 +287,12 @@ function unhide(element) {
 
 function hide(element) {
   element.classList.add('hidden');
+};
+
+function reveal(element) {
+  element.classList.remove('transparent');
+};
+
+function obscure(element) {
+  element.classList.add('transparent');
 };
