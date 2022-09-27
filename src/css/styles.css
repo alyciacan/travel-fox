@@ -55,6 +55,7 @@
   padding: 30px;
   text-align: center;
   width: 100%;
+  height: 116px;
 }
 
 .nav-bar_p:hover {
@@ -153,6 +154,7 @@ h4,
   padding: 10px 25px 25px 25px;
   position: absolute;
   top: 25px;
+  width: 405px;
   z-index: 2;
 }
 
@@ -270,7 +272,7 @@ h2, h3 {
   .main-section__content-img {
     height: 100%;
     object-fit: cover;
-    object-position: 0px 100px;
+    object-position: 0px 0px;
     width: 100%;
     /* try hard-coding proportions */
   }
