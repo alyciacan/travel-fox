@@ -6,6 +6,7 @@
 
   <h2 align="center">travelfox</h2>
 
+
   <h4 align="center">
     The all-in-one vacation station for the choosy world-traveler.
   </h4>
@@ -86,4 +87,3 @@ Alycia Canavan - alycia.canavan@gmail.com - [LinkedIn](https://www.linkedin.com/
 
 ## Acknowledgments         
 Shout out to my Project Manager, Cass, for her patience and support!
-
