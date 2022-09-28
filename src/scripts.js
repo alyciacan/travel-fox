@@ -4,6 +4,8 @@ import './css/styles.css';
 import { fetchData, fetchUserData, fetchPost } from './apiCalls.js';
 import Traveler from './Traveler.js';
 import Trip from './Trip.js';
+import { destinationsData } from './destinations.js';
+import { ellyn } from './traveler14.js';
 const dayjs = require('dayjs')
 var isSameOrBefore = require('dayjs/plugin/isSameOrBefore');
 dayjs.extend(isSameOrBefore);
@@ -63,6 +65,8 @@ viewTripsBtn.addEventListener('keyup', function(e) {
   });
 loginBtn.addEventListener('click', checkLogin);
 
+
+//FUNCTIONS:
 function checkLogin() {
   if (!username.value || !password.value) {
     loginValidationMsg.innerText = "you must complete both fields!";
@@ -81,17 +85,13 @@ function logIn(username) {
 };
 
 function getData(userID) {
-  Promise.all([fetchData('destinations'), fetchData('trips'), fetchUserData(`${userID}`)])
-    .then(datasetArray => {
-      allDestinations = datasetArray[0];
-      allTrips = datasetArray[1];
-      currentUser = new Traveler(datasetArray[2]);
-      generatePageLoad(currentUser);
-    })
-    .catch(error => respondLoadError(error));
+  allDestinations = destinationsData.destinations;
+  allTrips = ellyn.trips;
+  currentUser = new Traveler(ellyn.user);
+  generatePageLoad();
 };
 
-function generatePageLoad(user) {
+function generatePageLoad() {
   renderUserGreeting();
   renderUserExpenditures();
   renderUserCards();
@@ -120,15 +120,9 @@ function submitForm() {
   const destination = allDestinations
     .find(destinationObj => destinationObj.destination === destinationChooser.value);
   const trip = new Trip(currentUser, destination, { travelers:`${numTravelers.value}`, date: date, duration:`${duration.value}` });
-  const tripRequest = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(trip)
-  };
-  fetchPost(tripRequest)
-    .then(() => respondSuccess(trip, destination))
-    .then(() => getData(currentUser.id))
-    .catch(error => respondError(error));
+  allTrips.push(trip);
+  respondSuccess(trip, destination);
+  getData(currentUser.id);
   form.reset();
 };
 
