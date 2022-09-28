@@ -36,7 +36,7 @@ Other features I want to highlight:
  ![Trello](https://img.shields.io/badge/Trello-%23026AA7.svg?style=for-the-badge&logo=Trello&logoColor=white)         
 
 ### Project Link
-Deployed Project: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Deployed Project: [travelfox](https://alyciacan.github.io/travel-fox/)
 
 ### Screenshots:          
 <div align="center">
