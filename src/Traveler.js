@@ -19,9 +19,9 @@ class Traveler {
         eachTripCosts.push(baseCost + (baseCost * .1));
       }
     });
-    return eachTripCosts.reduce((total, curr) => {
+    return Math.round(eachTripCosts.reduce((total, curr) => {
       return total += curr
-    }, 0).toLocaleString('en-US');
+    }, 0)).toLocaleString('en-US');
   };
 
   greetUser() {
