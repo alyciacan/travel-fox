@@ -6,9 +6,9 @@
 
   <h2 align="center">travelfox</h2>
 
-  <p align="center">
+  <h4 align="center">
     The all-in-one vacation station for the choosy world-traveler.
-  </p>
+  </h4>
 
 Travelfox is an application where travelers can submit trip requests to a fictional travel agency, view their previous and upcoming trips, and keep track of their travel expenditures. 
 
@@ -56,7 +56,7 @@ Deployed Project: [https://github.com/your_username/repo_name](https://github.co
   <li>To verify that it is setup correctly, run `npm start` in your terminal to start the local server. You will see a bunch of lines output to your terminal. One of those lines will be something like: Project is running at http://localhost:8080/.</li>
   <li>Go to http://localhost:8080/ in your browser to view the code running in the browser.</li>
   <li>Enter control + c in your terminal to stop the local server at any time.</li>
-  <li>You will also need to clone down [this local api server](https://github.com/turingschool-examples/travel-tracker-api) outside of the Travel Fox directory, follow the installation instructions, and have it running in a separate tab in your terminal each time you run the client.</li>
+  <li>You will also need to clone down this local api server: https://github.com/turingschool-examples/travel-tracker-api outside of the Travel Fox directory, follow the installation instructions, and have it running in a separate tab in your terminal each time you run the client.</li>
 </ol>
 
 ## Context
