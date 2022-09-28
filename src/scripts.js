@@ -126,8 +126,8 @@ function submitForm() {
     body: JSON.stringify(trip)
   };
   fetchPost(tripRequest)
-    .then(respondSuccess(trip, destination))
-    .then(getData(currentUser.id))
+    .then(() => respondSuccess(trip, destination))
+    .then(() => getData(currentUser.id))
     .catch(error => respondError(error));
   form.reset();
 };
