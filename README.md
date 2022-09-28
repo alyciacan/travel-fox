@@ -60,7 +60,7 @@ Deployed Project: [https://github.com/your_username/repo_name](https://github.co
 </ol>
 
 ## Context
-__Me:__ I'm a student in the Front End program at [Turing School of Software and Design](https://frontend.turing.edu/). TravelFox is my solo final project for Mod 2, which means I have been a dev for just under 3 months!    
+👋 I'm a student in the Front End program at [Turing School of Software and Design](https://frontend.turing.edu/). TravelFox is my solo final project for Mod 2, which means I have been a dev for just under 3 months!    
 
 ## Contact
 
@@ -77,8 +77,8 @@ Alycia Canavan - alycia.canavan@gmail.com - [LinkedIn](https://www.linkedin.com/
 
 
 ### Challenges:       
-🤔 11th hour bug in which I discovered a timing issue when new trip requests are submitted (server problem!)                 
-🤔 Tricky photo formatting       
+🤔 Troubleshooting an 11th hour bug 🐜 in my POST fetch request               
+🤔 Tricky photo formatting!     
 
 ### Future Directions:         
 * Add dashboard and functionality for travel agent use        
