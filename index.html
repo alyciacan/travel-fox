@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TravelFox</title>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+</head>
+<body>
+  <section id="login-page" class="login-page">
+    <div class="screen">
+    </div>
+    <div class="login-form-container">
+      <img class="login-fox" src="./images/travelfox_pink_notext.svg" alt="Pink cartoon fox logo" />
+      <h1>hey there, traveler!  log in here:</h1>
+      <form class="login-container">
+        <label for="username">username: <input value="traveler14" type="username" maxlength="15" id="username"/></label>
+        <label for="password">password: <input value="travel" type="password" maxlength="15" id="password"/></label>
+        <button label="login-btn" class="submit" type="button" id="login-btn">log me in</button>
+      </form>
+      <p id="login-validation-msg" class="responseMessage transparent">you must complete both fields!</p>
+    </div>
+  </section>
+  <header id="header" class="header">
+    <h2 id="header__welcome-message">Hello, <span id="header__welcome-message-name"></span>!</h2>
+    <div class="header__logo-container">
+      <img src="./images/travelfox.png" alt="Stylized TravelFox lettering" class="logo"/>
+      <img src="./images/travelfox_white_notext.svg" alt="Stylized white fox logo" class="logo"/>
+    </div>
+  </header>
+  <div class="main-section">
+    <nav id="nav-bar" class="nav-bar">
+      <h2 id="nav-bar__new-trip" class="nav-bar_p" tabindex="0">new trip request</h2>
+      <h2 id="nav-bar__my-trips" class="nav-bar_p" tabindex="0">view upcoming trips</h2>
+      <h2 id="nav-bar__my-expenses" class="nav-bar_p" tabindex="0">review my travel expenses</h2>
+      <section class="total-expenses-container hidden" id="total-expenses-container">
+        <h3>In 2022, you have spent:</h3>
+        <p class="total-expenses" id="total-expenses"></p>
+        <h3>on travel so far!</h3>
+      </section>
+    </nav>
+    <section class="main-section__content">
+      <div class="image-container">
+        <img class="main-section__content-img" src="./images/Oregon.png" alt="Oregon coastline with haystack rocks and Pacific Ocean"/>
+      </div>
+      <section class="main-section__content form-container hidden" id="form-container">
+        <form id="new-trip-form">
+          <h3>going somewhere?</h3>
+          <label for="start-date">Departure date: <input type="date" id="start-date"/></label>
+          <label for="duration">Number of nights: <input type="number" id="duration"/></label>
+          <label for="num-travelers">Number of travelers: <input type="number" id="num-travelers"/></label>
+          <label for="destinations">Destination:
+            <select name="destination" id="destinations">
+            </select>
+          </label>
+          <button label="submit-btn" class="submit" type="button" id="submit-btn">Submit</button>
+          <p id="responseMessage" class="responseMessage transparent">Please complete all fields!</p>
+        </form>
+      </section>
+      <h1>
+        <svg xmlns="http://www.w3.org/2000/svg" class="svg-triangle" width='12' height='9' viewBox="0 0 12 9">
+          <polygon points="1 0, 11 0, 6 8"/>
+        </svg> <span id="my-trips">All my trips</span>
+      </h1>
+      <section class="main-section__content card-container" id="card-container">
+      </section>
+    </section>
+</div>
+  <script src="bundle.js"></script>
+</body>
+</html>
